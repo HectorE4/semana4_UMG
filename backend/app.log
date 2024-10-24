@@ -1,0 +1,45 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.128.0.2:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 699-157-694
+INFO:root:Nueva solicitud recibida
+INFO:root:Usuario hector ha iniciado sesión exitosamente
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2024 06:10:03] "POST /login HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.128.0.2:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 699-157-694
+INFO:root:Nueva solicitud recibida
+INFO:root:Usuario hector ha iniciado sesión exitosamente
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2024 06:31:11] "POST /login HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.128.0.2:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 699-157-694
+INFO:root:Nueva solicitud recibida
+INFO:root:Usuario hector ha iniciado sesión exitosamente con rol usuario
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2024 06:41:26] "POST /login HTTP/1.1" 200 -
+INFO:root:Nueva solicitud recibida
+INFO:root:Nuevo usuario creado: martin
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2024 06:41:49] "[35m[1mPOST /crear_usuario HTTP/1.1[0m" 201 -
+INFO:root:Nueva solicitud recibida
+INFO:root:Usuario martin ha iniciado sesión exitosamente con rol admin
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2024 06:41:58] "POST /login HTTP/1.1" 200 -
+INFO:root:Nueva solicitud recibida
+INFO:root:Usuario hector ha iniciado sesión exitosamente con rol usuario
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2024 06:42:19] "POST /login HTTP/1.1" 200 -
+INFO:root:Nueva solicitud recibida
+INFO:root:Usuario martin ha iniciado sesión exitosamente con rol admin
+INFO:werkzeug:127.0.0.1 - - [24/Oct/2024 06:44:36] "POST /login HTTP/1.1" 200 -

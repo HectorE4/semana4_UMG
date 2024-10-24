@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 4 UMG Maestría - Login/Registro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1, h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Semana 4 UMG Maestría</h1>
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+        <input type="text" id="nombre_usuario" placeholder="Nombre de usuario" required>
+        <input type="password" id="contrasena" placeholder="Contraseña" required>
+        <button type="submit">Iniciar Sesión</button>
+        <p class="error-message" id="error-message"></p>
+    </form>
+
+    <h2>Crear Usuario</h2>
+    <form id="registroForm">
+        <input type="text" id="nombre_usuario_reg" placeholder="Nombre de usuario" required>
+        <input type="password" id="contrasena_reg" placeholder="Contraseña" required>
+        <input type="email" id="correo_reg" placeholder="Correo Electrónico" required>
+        <button type="submit">Crear Usuario</button>
+        <p class="error-message" id="error-message-registro"></p>
+    </form>
+</div>
+
+<script>
+    // Login
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var nombre_usuario = document.getElementById("nombre_usuario").value;
+        var contrasena = document.getElementById("contrasena").value;
+
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre_usuario: nombre_usuario,
+                contrasena: contrasena
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.mensaje === "Login exitoso") {
+                if (data.rol === "admin") {
+                    window.location.href = "/admin";
+                } else {
+                    window.location.href = "/usuario";
+                }
+            } else {
+                document.getElementById("error-message").textContent = "Credenciales incorrectas";
+                document.getElementById("error-message").style.display = "block";
+            }
+        })
+        .catch(error => {
+            document.getElementById("error-message").textContent = "Error en la conexión con el servidor";
+            document.getElementById("error-message").style.display = "block";
+        });
+    });
+
+    // Registro de nuevo usuario
+    document.getElementById("registroForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var nombre_usuario = document.getElementById("nombre_usuario_reg").value;
+        var contrasena = document.getElementById("contrasena_reg").value;
+        var correo = document.getElementById("correo_reg").value;
+
+        fetch("/crear_usuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre_usuario: nombre_usuario,
+                contrasena: contrasena,
+                correo: correo
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.mensaje === "Usuario creado exitosamente") {
+                alert("Usuario creado exitosamente");
+            } else {
+                document.getElementById("error-message-registro").textContent = "Error: " + data.mensaje;
+                document.getElementById("error-message-registro").style.display = "block";
+            }
+        })
+        .catch(error => {
+            document.getElementById("error-message-registro").textContent = "Error en la conexión con el servidor";
+            document.getElementById("error-message-registro").style.display = "block";
+        });
+    });
+</script>
+
+</body>
+</html>
