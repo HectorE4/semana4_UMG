@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Chequear el código del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Paso 2: Configurar Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      # Paso 3: Instalar dependencias del backend
+      - name: Install dependencies for backend
+        working-directory: ./backend
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      # Paso 4: Ejecutar pruebas de backend (esto es opcional, puedes agregar más pruebas)
+      - name: Run backend tests
+        working-directory: ./backend
+        run: |
+          source venv/bin/activate
+          # Aquí agregarías comandos para ejecutar las pruebas (si tienes alguna)
+          echo "No hay pruebas definidas"
+
+      # Paso 5: Configurar el servidor de frontend (opcional para futuras pruebas)
+      - name: Deploy frontend
+        run: echo "Despliegue de frontend (a completar en el futuro)"
